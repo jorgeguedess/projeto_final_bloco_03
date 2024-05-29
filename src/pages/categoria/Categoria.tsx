@@ -11,19 +11,19 @@ function CategoriaPage() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { buscarPorId, categoria, isLoading, setIsLoading } = useCategoria();
+  const { buscarCategoriaPorId, categoria, isLoading, setIsLoading } = useCategoria();
 
   if (!id) navigate("/");
 
   useEffect(() => {
     if (id !== undefined) {
-      buscarPorId(id);
+      buscarCategoriaPorId(id);
     }
   }, [id]);
 
   useEffect(() => {
     setIsLoading(true);
-    buscarPorId(id!);
+    buscarCategoriaPorId(id!);
   }, [id]);
 
   if (!id) navigate("/");

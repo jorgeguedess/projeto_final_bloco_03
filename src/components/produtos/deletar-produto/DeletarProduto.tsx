@@ -1,53 +1,25 @@
 ﻿/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
-import Produto from "../../../models/Produto";
-import { buscar, deletar } from "../../../service/Service";
-import { ToastAlert } from "../../../utils/ToastAlert";
+import { useProduto } from "../../../hooks/useProduto";
 
 function DeletarProduto() {
   const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [produto, setProduto] = useState<Produto>({} as Produto);
+  const { isLoading, produto, buscarProdutoPorId, deletarProduto } = useProduto();
 
   const { id } = useParams<{ id: string }>();
 
-  async function buscarPorId(id: string) {
-    try {
-      await buscar(`/produtos/${id}`, setProduto);
-    } catch (error: any) {
-      if (error.toString().includes("403")) {
-        navigate("/");
-      }
-    }
-  }
-
   useEffect(() => {
     if (id !== undefined) {
-      buscarPorId(id);
+      buscarProdutoPorId(id);
     }
   }, [id]);
 
-  async function DeletarProduto() {
-    setIsLoading(true);
-
-    try {
-      await deletar(`/produtos/${id}`);
-
-      ToastAlert("Produto apagado com sucesso", "sucesso");
-    } catch (error: any) {
-      ToastAlert("Erro ao deletar o produto.", "erro");
-      navigate("/");
-    }
-
-    setIsLoading(false);
-    retornar();
-  }
-
-  function retornar() {
-    navigate("/produtos");
+  if (!id) {
+    navigate("/");
+    return;
   }
 
   return (
@@ -67,13 +39,13 @@ function DeletarProduto() {
           <p>Categoria: {produto.categoria?.nome}</p>
         </div>
         <div className="flex">
-          <button className="text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2" onClick={retornar}>
+          <button className="text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2" onClick={() => navigate("/produtos")}>
             Não
           </button>
           <button
             className="w-full text-slate-100 bg-blue-400 
                         hover:bg-blue-600 flex items-center justify-center"
-            onClick={DeletarProduto}
+            onClick={() => deletarProduto(id)}
           >
             {isLoading ? <RotatingLines strokeColor="white" strokeWidth="5" animationDuration="0.75" width="24" visible={true} /> : <span>Sim</span>}
           </button>

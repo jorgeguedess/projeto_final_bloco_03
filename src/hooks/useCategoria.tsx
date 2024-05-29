@@ -7,7 +7,7 @@ import Categoria from "../models/Categoria";
 import { ToastAlert } from "../utils/ToastAlert";
 
 interface UseCategoriaProps {
-  buscarPorId(id: string): Promise<void>;
+  buscarCategoriaPorId(id: string): Promise<void>;
   deletarCategoria(id: string): Promise<void>;
   buscarCategorias(): Promise<void>;
   atualizarEstado(e: ChangeEvent<HTMLInputElement>): void;
@@ -40,7 +40,7 @@ export const useCategoria = (): UseCategoriaProps => {
     }
   }
 
-  async function buscarPorId(id: string) {
+  async function buscarCategoriaPorId(id: string) {
     try {
       await buscar(`/categorias/${id}`, setCategoria);
     } catch (error: any) {
@@ -117,7 +117,7 @@ export const useCategoria = (): UseCategoriaProps => {
     categorias,
     categoria,
     buscarCategorias,
-    buscarPorId,
+    buscarCategoriaPorId,
     deletarCategoria,
     atualizarEstado,
     gerarNovaCategoria,

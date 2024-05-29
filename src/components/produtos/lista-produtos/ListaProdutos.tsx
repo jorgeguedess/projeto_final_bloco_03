@@ -1,25 +1,11 @@
 ﻿/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { DNA } from "react-loader-spinner";
 import Cardprodutos from "../card-produtos/CardProdutos";
-import { buscar } from "../../../service/Service";
-import Produto from "../../../models/Produto";
+import { useProduto } from "../../../hooks/useProduto";
 
 function ListaProdutos() {
-  const navigate = useNavigate();
-
-  const [produtos, setProdutos] = useState<Produto[]>([]);
-
-  async function buscarprodutos() {
-    try {
-      await buscar("/produtos", setProdutos);
-    } catch (error: any) {
-      if (error.toString().includes("403")) {
-        navigate("/");
-      }
-    }
-  }
+  const { produtos, buscarprodutos } = useProduto();
 
   useEffect(() => {
     buscarprodutos();

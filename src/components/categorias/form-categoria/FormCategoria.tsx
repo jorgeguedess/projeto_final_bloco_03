@@ -6,11 +6,11 @@ import { useCategoria } from "../../../hooks/useCategoria";
 
 function FormCategoria() {
   const { id } = useParams<{ id: string }>();
-  const { atualizarEstado, categoria, isLoading, buscarPorId, gerarNovaCategoria } = useCategoria();
+  const { atualizarEstado, categoria, isLoading, buscarCategoriaPorId, gerarNovaCategoria } = useCategoria();
 
   useEffect(() => {
     if (id !== undefined) {
-      buscarPorId(id);
+      buscarCategoriaPorId(id);
     }
   }, [id]);
 

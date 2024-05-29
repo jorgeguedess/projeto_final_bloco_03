@@ -6,13 +6,13 @@ import { useCategoria } from "../../../hooks/useCategoria";
 
 function DeletarCategoria() {
   const navigate = useNavigate();
-  const { buscarPorId, deletarCategoria, categoria, isLoading } = useCategoria();
+  const { buscarCategoriaPorId, deletarCategoria, categoria, isLoading } = useCategoria();
 
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     if (id !== undefined) {
-      buscarPorId(id);
+      buscarCategoriaPorId(id);
     }
   }, [id]);
 

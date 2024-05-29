@@ -9,7 +9,6 @@ import { ToastAlert } from "../../../utils/ToastAlert";
 
 function FormProduto() {
   const navigate = useNavigate();
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [categorias, setCategorias] = useState<Categoria[]>([]);
 

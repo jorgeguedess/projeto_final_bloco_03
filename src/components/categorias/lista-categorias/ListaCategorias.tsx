@@ -1,26 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { DNA } from "react-loader-spinner";
 import { CardCategorias } from "../card-categorias/CardCategorias";
-import { buscar } from "../../../service/Service";
-import { useNavigate } from "react-router-dom";
-import Categoria from "../../../models/Categoria";
+import { useCategoria } from "../../../hooks/useCategoria";
 
 function ListaCategorias() {
-  const navigate = useNavigate();
-  const [categorias, setCategorias] = useState<Categoria[]>([]);
-
-  async function buscarCategorias() {
-    try {
-      await buscar("/categorias", setCategorias);
-    } catch (error: any) {
-      if (error.response && error.response.status === 403) {
-        navigate("/");
-      } else {
-        console.error("Erro ao buscar categorias:", error);
-      }
-    }
-  }
+  const { buscarCategorias, categorias } = useCategoria();
 
   useEffect(() => {
     buscarCategorias();

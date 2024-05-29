@@ -1,46 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
-import { buscar, deletar } from "../../../service/Service";
-import Categoria from "../../../models/Categoria";
-import { ToastAlert, ToastAlerta } from "../../../utils/ToastAlert";
+import { useCategoria } from "../../../hooks/useCategoria";
 
 function DeletarCategoria() {
   const navigate = useNavigate();
-  const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { buscarPorId, deletarCategoria, categoria, isLoading } = useCategoria();
 
   const { id } = useParams<{ id: string }>();
-
-  async function buscarPorId(id: string) {
-    try {
-      await buscar(`/categorias/${id}`, setCategoria);
-    } catch (error: any) {
-      if (error.toString().includes("403")) {
-        navigate("/");
-      }
-    }
-  }
-
-  async function deletarCategoria(id: string) {
-    setIsLoading(true);
-
-    try {
-      await deletar(`/categorias/${id}`);
-
-      ToastAlert("Categoria apagada com sucesso", "sucesso");
-    } catch (error: any) {
-      if (error.toString().includes("403")) {
-        navigate("/");
-      } else {
-        ToastAlert("Erro ao deletar a categoria.", "erro");
-      }
-    }
-
-    setIsLoading(false);
-    navigate("/");
-  }
 
   useEffect(() => {
     if (id !== undefined) {

@@ -1,32 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useParams } from "react-router-dom";
-import { buscar } from "../../service/Service";
-import { useEffect, useState } from "react";
-import Categoria from "../../models/Categoria";
+import { useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import Popup from "reactjs-popup";
 import FormCategoria from "../../components/categorias/form-categoria/FormCategoria";
 import DeletarCategoria from "../../components/categorias/deletar-categoria/DeletarCategoria";
+import { useCategoria } from "../../hooks/useCategoria";
 
 function CategoriaPage() {
-  const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const { id } = useParams();
 
-  if (!id) navigate("/");
+  const { buscarPorId, categoria, isLoading, setIsLoading } = useCategoria();
 
-  async function buscarPorId(id: string) {
-    try {
-      await buscar(`/categorias/${id}`, setCategoria);
-    } catch (error: any) {
-      if (error.toString().includes("403")) {
-        navigate("/");
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  if (!id) navigate("/");
 
   useEffect(() => {
     if (id !== undefined) {

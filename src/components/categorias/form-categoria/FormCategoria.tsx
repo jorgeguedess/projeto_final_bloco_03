@@ -1,77 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
-import { useNavigate, useParams } from "react-router-dom";
-import Categoria from "../../../models/Categoria";
-import { atualizar, buscar, cadastrar } from "../../../service/Service";
-import { ToastAlert } from "../../../utils/ToastAlert";
+import { useParams } from "react-router-dom";
+import { useCategoria } from "../../../hooks/useCategoria";
 
 function FormCategoria() {
-  const navigate = useNavigate();
-
-  const [categoria, setCategoria] = useState<Categoria>({} as Categoria);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const { id } = useParams<{ id: string }>();
-
-  async function buscarPorId(id: string) {
-    try {
-      await buscar(`/categorias/${id}`, setCategoria);
-    } catch (error: any) {
-      if (error.toString().includes("403")) {
-        navigate("/");
-      }
-    }
-  }
+  const { atualizarEstado, categoria, isLoading, buscarPorId, gerarNovaCategoria } = useCategoria();
 
   useEffect(() => {
     if (id !== undefined) {
       buscarPorId(id);
     }
   }, [id]);
-
-  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-    setCategoria({
-      ...categoria,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  function retornar() {
-    navigate("/categorias");
-  }
-
-  async function gerarNovaCategoria(e: ChangeEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setIsLoading(true);
-
-    if (id !== undefined) {
-      try {
-        await atualizar(`/categorias`, categoria, setCategoria);
-        ToastAlert("A Categoria foi atualizado com sucesso!", "sucesso");
-      } catch (error: any) {
-        if (error.toString().includes("403")) {
-          navigate("/");
-        } else {
-          ToastAlert("Erro ao atualizar o categoria.", "erro");
-        }
-      }
-    } else {
-      try {
-        await cadastrar(`/categorias`, categoria, setCategoria);
-        ToastAlert("A Categoria foi cadastrado com sucesso!", "sucesso");
-      } catch (error: any) {
-        if (error.toString().includes("403")) {
-          navigate("/");
-        } else {
-          ToastAlert("Erro ao cadastrar a categoria.", "erro");
-        }
-      }
-    }
-
-    setIsLoading(false);
-    retornar();
-  }
 
   return (
     <div className="flex flex-col items-center justify-center">

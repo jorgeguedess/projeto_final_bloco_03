@@ -32,7 +32,7 @@ export const NavbarBottom = () => {
         <ul className="flex flex-wrap gap-4 justify-between">
           {categoriasMenu.map((categoria) => (
             <li key={categoria.id}>
-              <Link to={`/categoria/${categoria.id}/{${categoria.nome}}`} className="text-neutral-700 uppercase py-2 inline-block hover:text-blue-500 focus:text-blue-500 transition-colors">
+              <Link to={`/categoria/${categoria.id}/{${categoria.nome}}`} className="text-neutral-700 uppercase py-3 inline-block hover:text-blue-500 focus:text-blue-500 transition-colors">
                 {categoria.nome}
               </Link>
             </li>

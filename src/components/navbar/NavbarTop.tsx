@@ -1,11 +1,15 @@
 import { Basket, MagnifyingGlass, UserCircle } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import Logo from "../../assets/logo.svg";
 
 export const NavbarTop = () => {
   return (
     <header className="bg-blue-800 text-white py-4">
       <div className="container flex gap-4 items-center justify-between font-medium">
-        <Link to={"/"}>Logo</Link>
+        <Link to={"/"} className="flex items-center">
+          <img src={Logo} alt="" className="size-14" />
+          Farmácia Dev
+        </Link>
         <div className="relative flex w-full max-w-[500px] rounded-xl flex-1">
           <input className="font-roboto w-full rounded-xl border border-solid border-border px-6 py-2 text-base  outline-none placeholder:font-normal placeholder:text-muted-foreground focus:border-gray-500 text-black" type="text" placeholder="O que você procura?" />
           <button className="group absolute right-0 top-0 flex rounded-xl px-3 py-2 text-muted-foreground outline-none">
@@ -13,8 +17,9 @@ export const NavbarTop = () => {
           </button>
         </div>
 
-        <div>
-          <Link to={"/categorias"}>Todas as Categorias</Link>
+        <div className="flex gap-4 items-center">
+          <Link to={"/categorias"}>Categorias</Link>
+          <Link to={"/produtos"}>Produtos</Link>
         </div>
 
         <div className="flex gap-4 items-center">

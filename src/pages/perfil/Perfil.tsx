@@ -6,7 +6,7 @@ const mockUsuario = {
 
 function Perfil() {
   return (
-    <div className="rounded-2xl overflow-hidden py-4">
+    <div className="rounded-2xl overflow-hidden py-8">
       <div className="container">
         <img className="w-full h-72 object-cover border-b-8 border-white" src="https://i.imgur.com/ZZFAmzo.jpg" alt="Capa do Perfil" />
 

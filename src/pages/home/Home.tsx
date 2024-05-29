@@ -1,12 +1,12 @@
-import ListaCategorias from "../../components/categorias/lista-categorias/ListaCategorias";
-import HomeFarmacia from "../../assets/home-farmacia.svg";
+import Banner from "../../assets/banner.png";
 import ModalCategoria from "../../components/categorias/modal-categoria/ModalCategoria";
-import Popup from "reactjs-popup";
+import ListaProdutos from "../../components/produtos/lista-produtos/ListaProdutos";
+import ModalProduto from "../../components/produtos/modal-produto/ModalProduto";
 
 export const Home = () => {
   return (
-    <div className="flex-1 py-4 md:py-8 bg-blue-950">
-      <div className="flex justify-center">
+    <div className="flex-1">
+      <div className="flex justify-center bg-blue-950 py-8">
         <div className="container grid grid-cols-2 text-white">
           <div className="flex flex-col gap-4 items-center justify-center py-4">
             <h2 className="text-5xl font-bold">Seja Bem Vinde!</h2>
@@ -14,17 +14,18 @@ export const Home = () => {
 
             <div className="flex justify-around gap-4">
               <div className="flex justify-around gap-4">
+                <ModalProduto />
                 <ModalCategoria />
               </div>
             </div>
           </div>
 
           <div className="flex justify-center ">
-            <img src={HomeFarmacia} alt="Imagem Página Home" className="w-2/3" />
+            <img src={Banner} alt="Imagem Página Home" className="w-2/3" />
           </div>
         </div>
       </div>
-      <ListaCategorias />
+      <ListaProdutos />
     </div>
   );
 };

@@ -7,7 +7,8 @@ import { useProduto } from "../../../hooks/useProduto";
 function DeletarProduto() {
   const navigate = useNavigate();
 
-  const { isLoading, produto, buscarProdutoPorId, deletarProduto } = useProduto();
+  const { isLoading, produto, buscarProdutoPorId, deletarProduto } =
+    useProduto();
 
   const { id } = useParams<{ id: string }>();
 
@@ -23,32 +24,51 @@ function DeletarProduto() {
   }
 
   return (
-    <div className="container w-1/3 mx-auto">
-      <h1 className="text-4xl text-center my-4">Deletar Produto</h1>
+    <div className="container w-full py-8">
+      <div className="mx-auto max-w-[400px]">
+        <h1 className="my-4 text-center text-4xl">Deletar Produto</h1>
 
-      <p className="text-center font-semibold mb-4">Você tem certeza de que deseja apagar o produto a seguir?</p>
+        <p className="mb-4 text-center font-semibold">
+          Você tem certeza de que deseja apagar o produto a seguir?
+        </p>
 
-      <div className="border flex flex-col rounded-2xl overflow-hidden justify-between">
-        <header className="py-2 px-6 bg-blue-600 text-white font-bold text-2xl">Produto</header>
-        <div className="p-4 ">
-          <h4 className="text-lg font-semibold uppercase">{produto.nome}</h4>
-          <div>
-            <img src={produto.foto} alt="" />
+        <div className="flex flex-col justify-between overflow-hidden rounded-2xl border">
+          <header className="bg-blue-600 px-6 py-2 text-2xl font-bold text-white">
+            Produto
+          </header>
+          <div className="p-4 ">
+            <h4 className="text-lg font-semibold uppercase">{produto.nome}</h4>
+            <div>
+              <img src={produto.foto} alt="" />
+            </div>
+            <p>R$ {produto.preco}</p>
+            <p>Categoria: {produto.categoria?.nome}</p>
           </div>
-          <p>R$ {produto.preco}</p>
-          <p>Categoria: {produto.categoria?.nome}</p>
-        </div>
-        <div className="flex">
-          <button className="text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2" onClick={() => navigate("/produtos")}>
-            Não
-          </button>
-          <button
-            className="w-full text-slate-100 bg-blue-400 
-                        hover:bg-blue-600 flex items-center justify-center"
-            onClick={() => deletarProduto(id)}
-          >
-            {isLoading ? <RotatingLines strokeColor="white" strokeWidth="5" animationDuration="0.75" width="24" visible={true} /> : <span>Sim</span>}
-          </button>
+          <div className="flex">
+            <button
+              className="w-full bg-red-400 py-2 text-slate-100 hover:bg-red-600"
+              onClick={() => navigate("/produtos")}
+            >
+              Não
+            </button>
+            <button
+              className="flex w-full items-center 
+                        justify-center bg-blue-400 text-slate-100 hover:bg-blue-600"
+              onClick={() => deletarProduto(id)}
+            >
+              {isLoading ? (
+                <RotatingLines
+                  strokeColor="white"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="24"
+                  visible={true}
+                />
+              ) : (
+                <span>Sim</span>
+              )}
+            </button>
+          </div>
         </div>
       </div>
     </div>

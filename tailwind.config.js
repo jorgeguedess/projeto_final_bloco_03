@@ -6,12 +6,13 @@ export default {
       center: true,
       padding: "1.25rem",
       screens: {
-        "2xl": "1300px",
+        "2xl": "1200px",
       },
     },
     extend: {
       fontFamily: {
         inter: ["var(--font-inter), sans-serif"],
+        roboto: ["var(--font-roboto), sans-serif"],
       },
     },
   },

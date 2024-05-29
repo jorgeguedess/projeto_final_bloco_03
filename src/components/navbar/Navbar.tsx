@@ -1,10 +1,13 @@
+import { NavbarBottom } from "./NavbarBottom";
+import { NavbarMiddle } from "./NavbarMiddle";
 import { NavbarTop } from "./NavbarTop";
 
 export const Navbar = () => {
   return (
-    <div>
+    <header>
       <NavbarTop />
-      {/* <NavbarBottom /> */}
-    </div>
+      <NavbarMiddle />
+      <NavbarBottom />
+    </header>
   );
 };

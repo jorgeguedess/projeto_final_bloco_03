@@ -1,3 +1,6 @@
+import ModalCategoria from "../../components/categorias/modal-categoria/ModalCategoria";
+import ModalProduto from "../../components/produtos/modal-produto/ModalProduto";
+
 const mockUsuario = {
   nome: "Usuário",
   usuario: "usuario@root.com",
@@ -6,18 +9,29 @@ const mockUsuario = {
 
 function Perfil() {
   return (
-    <div className="rounded-2xl overflow-hidden py-8">
+    <div className="overflow-hidden rounded-2xl py-8">
       <div className="container">
-        <img className="w-full h-72 object-cover border-b-8 border-white" src="https://i.imgur.com/ZZFAmzo.jpg" alt="Capa do Perfil" />
+        <img
+          className="h-72 w-full border-b-8 border-white object-cover"
+          src="https://i.imgur.com/ZZFAmzo.jpg"
+          alt="Capa do Perfil"
+        />
 
-        <img className="rounded-full w-56 mx-auto mt-[-8rem] border-8 border-white relative z-10" src={mockUsuario.foto} alt={`Foto de perfil de ${mockUsuario.nome}`} />
+        <img
+          className="relative z-10 mx-auto mt-[-8rem] w-56 rounded-full border-8 border-white"
+          src={mockUsuario.foto}
+          alt={`Foto de perfil de ${mockUsuario.nome}`}
+        />
 
-        <div
-          className="relative mt-[-6rem] h-72 flex flex-col 
-                    bg-sky-500 text-white text-2xl items-center justify-center"
-        >
-          <p>Nome: {mockUsuario.nome} </p>
-          <p>Email: {mockUsuario.usuario}</p>
+        <div className="relative mt-[-6rem] flex min-h-72 flex-col items-center justify-center bg-sky-500 text-2xl text-white">
+          {/* <p>Nome: {mockUsuario.nome} </p>
+          <p>Email: {mockUsuario.usuario}</p> */}
+          <div className="mt-6 flex justify-around gap-4">
+            <div className="flex justify-around gap-4">
+              <ModalProduto />
+              <ModalCategoria />
+            </div>
+          </div>
         </div>
       </div>
     </div>

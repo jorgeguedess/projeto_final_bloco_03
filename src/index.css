@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 :root {
+  --font-inter: "Roboto", sans-serif;
   --font-inter: "Inter", sans-serif;
 }

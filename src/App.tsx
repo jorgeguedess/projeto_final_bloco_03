@@ -15,7 +15,7 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
-    <div className="font-inter flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col bg-white font-roboto text-[#141414]">
       <ToastContainer />
 
       <BrowserRouter>

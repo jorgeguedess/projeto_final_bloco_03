@@ -5,7 +5,14 @@ import Popup from "reactjs-popup";
 function ModalProduto() {
   return (
     <>
-      <Popup trigger={<button className="border rounded px-4 py-2 hover:bg-white hover:text-blue-800 transition-colors font-medium">Cadastrar Novo Produto</button>} modal>
+      <Popup
+        trigger={
+          <button className="rounded border border-[#0D4F81] bg-[#0D4F81] px-4 py-2 font-medium transition-colors hover:bg-[#125f9b]">
+            Cadastrar Novo Produto
+          </button>
+        }
+        modal
+      >
         <FormProduto />
       </Popup>
     </>

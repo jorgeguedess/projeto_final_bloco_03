@@ -4,6 +4,7 @@ import { RotatingLines } from "react-loader-spinner";
 import { useNavigate, useParams } from "react-router-dom";
 import Categoria from "../../../models/Categoria";
 import { atualizar, buscar, cadastrar } from "../../../service/Service";
+import { ToastAlert } from "../../../utils/ToastAlert";
 
 function FormCategoria() {
   const navigate = useNavigate();
@@ -47,23 +48,23 @@ function FormCategoria() {
     if (id !== undefined) {
       try {
         await atualizar(`/categorias`, categoria, setCategoria);
-        alert("A Categoria foi atualizado com sucesso!");
+        ToastAlert("A Categoria foi atualizado com sucesso!", "sucesso");
       } catch (error: any) {
         if (error.toString().includes("403")) {
           navigate("/");
         } else {
-          alert("Erro ao atualizar o categoria.");
+          ToastAlert("Erro ao atualizar o categoria.", "erro");
         }
       }
     } else {
       try {
         await cadastrar(`/categorias`, categoria, setCategoria);
-        alert("A Categoria foi cadastrado com sucesso!");
+        ToastAlert("A Categoria foi cadastrado com sucesso!", "sucesso");
       } catch (error: any) {
         if (error.toString().includes("403")) {
           navigate("/");
         } else {
-          alert("Erro ao cadastrar a categoria.");
+          ToastAlert("Erro ao cadastrar a categoria.", "erro");
         }
       }
     }

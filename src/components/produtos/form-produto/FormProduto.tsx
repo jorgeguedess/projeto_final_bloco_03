@@ -5,6 +5,7 @@ import { RotatingLines } from "react-loader-spinner";
 import Produto from "../../../models/Produto";
 import Categoria from "../../../models/Categoria";
 import { atualizar, buscar, cadastrar } from "../../../service/Service";
+import { ToastAlert } from "../../../utils/ToastAlert";
 
 function FormProduto() {
   const navigate = useNavigate();
@@ -64,24 +65,24 @@ function FormProduto() {
       try {
         await atualizar(`/produtos`, produto, setProduto);
 
-        alert("Produto atualizado com sucesso");
+        ToastAlert("Produto atualizado com sucesso", "sucesso");
       } catch (error: any) {
         if (error.toString().includes("403")) {
           navigate("/");
         } else {
-          alert("Erro ao atualizar o Produto");
+          ToastAlert("Erro ao atualizar o Produto", "erro");
         }
       }
     } else {
       try {
         await cadastrar(`/produtos`, produto, setProduto);
 
-        alert("Produto cadastrado com sucesso");
+        ToastAlert("Produto cadastrado com sucesso", "sucesso");
       } catch (error: any) {
         if (error.toString().includes("403")) {
           navigate("/");
         } else {
-          alert("Erro ao cadastrar o Produto");
+          ToastAlert("Erro ao cadastrar o Produto", "erro");
         }
       }
     }

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
 import { buscar, deletar } from "../../../service/Service";
 import Categoria from "../../../models/Categoria";
+import { ToastAlert, ToastAlerta } from "../../../utils/ToastAlert";
 
 function DeletarCategoria() {
   const navigate = useNavigate();
@@ -28,12 +29,12 @@ function DeletarCategoria() {
     try {
       await deletar(`/categorias/${id}`);
 
-      alert("Categoria apagada com sucesso");
+      ToastAlert("Categoria apagada com sucesso", "sucesso");
     } catch (error: any) {
       if (error.toString().includes("403")) {
         navigate("/");
       } else {
-        alert("Erro ao deletar a categoria.");
+        ToastAlert("Erro ao deletar a categoria.", "erro");
       }
     }
 

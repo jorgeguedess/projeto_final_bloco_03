@@ -11,10 +11,13 @@ import CategoriaPage from "./pages/categoria/Categoria";
 import ListaProdutos from "./components/produtos/lista-produtos/ListaProdutos";
 import FormProduto from "./components/produtos/form-produto/FormProduto";
 import DeletarProduto from "./components/produtos/deletar-produto/DeletarProduto";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <div className="font-inter flex flex-col min-h-screen">
+      <ToastContainer />
+
       <BrowserRouter>
         <Navbar />
         <Routes>

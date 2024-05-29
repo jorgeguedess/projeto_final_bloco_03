@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useParams } from "react-router-dom";
-import { atualizar, buscar, deletar } from "../../service/Service";
+import { buscar } from "../../service/Service";
 import { useEffect, useState } from "react";
 import Categoria from "../../models/Categoria";
 import { RotatingLines } from "react-loader-spinner";
-import ModalCategoria from "../../components/categorias/modal-categoria/ModalCategoria";
 import Popup from "reactjs-popup";
 import FormCategoria from "../../components/categorias/form-categoria/FormCategoria";
 import DeletarCategoria from "../../components/categorias/deletar-categoria/DeletarCategoria";

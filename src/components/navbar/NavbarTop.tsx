@@ -13,10 +13,14 @@ export const NavbarTop = () => {
           </button>
         </div>
 
+        <div>
+          <Link to={"/categorias"}>Todas as Categorias</Link>
+        </div>
+
         <div className="flex gap-4 items-center">
-          <Link to={""} className="flex gap-2">
+          <Link to="/perfil" className="flex gap-2">
             <UserCircle className="size-6" />
-            <span>Entrar</span>
+            <span>Olá usuário!</span>
           </Link>
           <button className="flex items-center justify-center gap-2">
             <div className="relative">
